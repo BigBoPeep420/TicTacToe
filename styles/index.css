@@ -1,5 +1,5 @@
 :root{
-    --fontSize3: clamp(1rem, calc(8dvw + 1rem), 4rem);
+    --fontSize3: clamp(1rem, calc(8dvw + 0.6rem), 4rem);
 }
 
 *{
@@ -15,6 +15,14 @@
     font-family: 'Knewave', system-ui;
 }
 
+body{
+    width: 100dvw;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    background-color: #333;
+}
+
 #header{
     background-color: rgb(20, 20, 20);
     height: min-content;
@@ -25,7 +33,7 @@
         display: flex;
         justify-content:space-evenly;
         gap: 20px;
-        width: min-content;
+        width: min(50%, min-content);
         justify-self: center;
         background-color: #313131;
         background-image: linear-gradient(to right, #cccccc15 1px, transparent 1px),
@@ -60,8 +68,8 @@
     .titleBG{
         background: linear-gradient(to top,
             #333,
-            #777 45%,
-            #777 55%,
+            #777 47%,
+            #777 53%,
             #333);
         width: 100dvw;
         height: 50%;
@@ -71,6 +79,38 @@
         z-index: -1;
     }
 }
+
+#content{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    #gameBoard{
+        background-color: #181818;
+        width: min(500px, 70dvw);
+        height: min(500px, 70dvw);
+        display: flex;
+        flex-direction: column;
+        padding: 3px;
+        gap: 3px;
+        border-radius: 10px;
+        .row{
+            flex-grow: 1;
+            display: flex;
+            justify-content: space-evenly;
+            gap: 3px;
+            .cell{
+                flex-grow: 1;
+                background-color: #474747;
+                border-radius: 10px;
+            }
+        }
+    }
+}
+
+
+
+
 
 @keyframes wiggle {
     from{

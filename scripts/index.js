@@ -45,7 +45,7 @@ function createPlayer(playerName, playerMark){
     else throw new RangeError("Error creating player - createPlayer() requires playerName to be at least 3 chars");
 
     return {name, mark};
-}
+};
 
 const gameInst = (function () {
     const players = [];
@@ -58,7 +58,7 @@ const gameInst = (function () {
                 players.push(createPlayer(playerName, playerMark));
             }
         }else throw new Error("Error in gameInst.registerPlayer() - Too many players");
-    }
+    };
     const deletePlayer = (playerMark) => {
         players.forEach((v, i) => {
             if(v.mark == playerMark){
@@ -67,34 +67,34 @@ const gameInst = (function () {
             }
         });
         throw new Error(`Error in gameInst.deletePlayer() - Couldn't find player with [mark: ${playerMark}:${typeof playerMark}]`);
-    }
+    };
     const playGame = () => {
         gBoard.clear();
         for(let round = 0; round <= 8; round++){
-            const result = giveTurn(players[round % 2]);
+            const result = takeTurn(players[round % 2]);
             if(result){
                 console.log(`${players[round % 2].name} wins!`);
                 return;
             }
         }
         console.log('Tie!')
-    }
-    const giveTurn = (player) => {
-        const row = prompt(`${player.name}'s turn. Enter row 1-3:`);
-        const col = prompt(`${player.name}'s turn. Enter column 1-3:`);
+    };
+    const takeTurn = (player, row, col) => {
+
         if(gBoard.placeMark(player.mark, row, col)){
-            gBoard.logBoard();
             const rowWin = gBoard.board[row - 1].every(v => v == player.mark);
             const colWin = gBoard.board.every(r => r[col - 1] == player.mark);
             const diagWin1 = (gBoard.board[0][0] == player.mark) && (gBoard.board[1][1] == player.mark) && (gBoard.board[2][2] == player.mark);
             const diagWin2 = (gBoard.board[0][2] == player.mark) && (gBoard.board[1][1] == player.mark) && (gBoard.board[2][0] == player.mark);
             if(rowWin || colWin || diagWin1 || diagWin2) return true;
             else return false;
-        }
+        };
+    };
 
-    }
-
-    return {registerPlayer, deletePlayer, playGame, players}
+    return {registerPlayer, deletePlayer, playGame, players};
 })();
 
+const gameInterface = (function () {
+
+})();
 
