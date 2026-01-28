@@ -1,5 +1,9 @@
 :root{
     --fontSize3: clamp(1rem, calc(8dvw + 0.6rem), 4rem);
+    --fontSize2: clamp(0.5rem, calc(1dvw + 0.5rem), 1.1rem);
+    --iconSize1: clamp(0.5rem, 6dvw, 2rem);
+    --colorRed: #7a2121;
+    --colorBody: #bebebe;
 }
 
 *{
@@ -13,6 +17,13 @@
     padding-inline-start: 0;
     margin-inline-start: 0;
     font-family: 'Knewave', system-ui;
+    box-sizing: border-box;
+}
+svg{
+    width: 100%;
+    height: 100%;
+    fill: rgb(from var(--colorRed) calc(r * 1.5) calc(g * 1.5) calc(b * 1.5));
+    filter: drop-shadow(0.15rem 0.15rem 0.1rem #000);
 }
 
 body{
@@ -20,7 +31,18 @@ body{
     height: 100dvh;
     display: flex;
     flex-direction: column;
-    background-color: #333;
+}
+
+.close{
+    width: calc(var(--fontSize2) * 2);
+    height: calc(var(--fontSize2) * 2);
+    padding: 5px;
+    border-radius: 50%;
+    display: flex;
+    svg{
+        width: 100%;
+        height: 100%;
+    }
 }
 
 #header{
@@ -28,20 +50,24 @@ body{
     height: min-content;
     padding: 20px;
     position: relative;
-    z-index: 0;
+    top: 0;
+    z-index: 10;
+    anchor-name: --ancHeader;
+    box-shadow: 0 0 0.8rem 0.4rem;
     .title{
         display: flex;
         justify-content:space-evenly;
         gap: 20px;
         width: min(50%, min-content);
         justify-self: center;
-        background-color: #313131;
-        background-image: linear-gradient(to right, #cccccc15 1px, transparent 1px),
-            linear-gradient(to bottom, #aaaaaa0e 1px, transparent 1px);
+        background-color: #1d221c;
+        background-image: linear-gradient(to right, #c25f5f15 1px, transparent 1px),
+            linear-gradient(to bottom, #c25f5f15 1px, transparent 1px);
         background-size: 5px 5px;
         box-shadow: inset 0 0 25px 5px #000,
             -2px -2px 0px #999999,
-            2px 2px 0px #424242;
+            2px 2px 0px #424242,
+            0px 0px 10px 5px;
         border-radius: 40%;
         padding: 30px;
         z-index: 5;
@@ -50,27 +76,31 @@ body{
             color: #141414;
             text-shadow: -2px -2px 0px #9c9c9c,
                 2px 2px 0px #494949;
-            filter: drop-shadow(5px 5px 15px);
+            filter: drop-shadow(5px 5px 15px #310404);
+            font-weight: normal;
         }
         .tic{
             animation: wiggle 2.5s linear 0s infinite alternate;
             transform: rotate(20deg);
+            color: var(--colorRed);
         }
         .tac{
             rotate: -5deg;
             animation: wiggle 2.2s linear -0s infinite alternate;
+            color: var(--colorRed);
         }
         .toe{
             transform: rotate(-10deg);
             animation: wiggle 2.5s linear -1.25s infinite alternate;
+            color: var(--colorRed);
         }
     }
     .titleBG{
         background: linear-gradient(to top,
-            #333,
-            #777 47%,
-            #777 53%,
-            #333);
+            transparent,
+            var(--colorRed) 47%,
+            var(--colorRed) 53%,
+            transparent);
         width: 100dvw;
         height: 50%;
         position: absolute;
@@ -83,40 +113,259 @@ body{
 #content{
     height: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
+    background-color: var(--colorBody);
+
+    #gameInfo{
+        display: flex;
+        justify-content: space-evenly;
+        width: min(700px, 100dvw);
+        background-color: #7e7d7d;
+        border-radius: 0.5rem;
+        position: relative;
+
+        div:not(#playerHighlight){
+            display: flex;
+            flex-direction: column;
+            padding: 0 1rem;
+            border-radius: 5px;
+            z-index: 1;
+
+            p:first-of-type{
+                align-self: center;
+                white-space: nowrap;
+            }
+            p{
+                font-size: var(--fontSize2);
+                color: rgb(from var(--colorRed) calc(r * 1.5) calc(g * 1.5) calc(b * 1.5));
+                text-shadow: 1px 1px 2px #000;
+            }
+            #gamesPlayed{
+                text-align: center;
+                font-size: calc(var(--fontSize2) * 1.4);
+            }
+            span{
+                font-size: calc(var(--fontSize2) * 1.4);
+            }
+        }
+        div.currentTurn{
+            background-color: #0000003a;
+        }
+        div.winner{
+            background-color: #5ab90060;
+        }
+        div.tie{
+            background-color: #b9690060;
+        }
+
+        #playerHighlight{
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            transition: all 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+            border-radius: 0.5rem;
+        }
+    }
+
     #gameBoard{
         background-color: #181818;
-        width: min(500px, 70dvw);
-        height: min(500px, 70dvw);
+        width: min(300px, 40dvw);
+        height: min(300px, 40dvw);
         display: flex;
         flex-direction: column;
         padding: 3px;
         gap: 3px;
-        border-radius: 10px;
+        box-shadow: -2px -2px 6px 1px;
+
         .row{
-            flex-grow: 1;
             display: flex;
             justify-content: space-evenly;
             gap: 3px;
+            flex: 1;
+            min-height: 0;
             .cell{
-                flex-grow: 1;
-                background-color: #474747;
+                background-color: var(--colorBody);
                 border-radius: 10px;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex: 1;
+                cursor: pointer;
+                svg{
+                    max-width: 90%;
+                    max-height: 90%;
+                }
             }
+            .cell svg use{
+                animation: markPlace 0.4s ease-out forwards;
+                transform-origin: center;
+            }
+        }
+    }
+
+    #gameButtons{
+        display: flex;
+        width: min(500px, 80%);
+        align-items: center;
+        justify-content: space-evenly;
+        button{
+            border-radius: 1rem;
+            color: rgb(from var(--colorRed) calc(r * 1.5) calc(g * 1.5) calc(b * 1.5));
+            box-shadow: inset 0 0 25px 0px #000,
+                2px 2px 10px 2px #000;
+            border: outset 2px #000;
+            display: flex;
+            width: fit-content;
+            height: fit-content;
+            align-items: center;
+            justify-content: center;
+            background-color: #7e7d7d;
+            cursor: pointer;
+            svg{
+                width: min(50px, 7dvw);
+                height: min(50px, 7dvw);
+            }
+            p{
+                font-size: clamp(0.4rem, calc(0.8dvw + 0.5rem), 1rem);
+                white-space: nowrap;
+                text-shadow: 1px 1px 2px #000;
+            }
+        }
+        #editPlayersBtn{
+            padding: 0.5rem 0.8rem;
+            gap: 0.5rem;
+        }
+        button:active{
+            border: inset 2px #000;
+            box-shadow: inset 0 0 25px 8px #000,
+                0 0 6px 0px #000;
+            translate: 0px 2px;
+        }
+        #help{
+            padding: 0.5rem;
+            border-radius: 1rem;
+        }
+        #startGameBtn{
+            padding: 0.5rem;
         }
     }
 }
 
+#notification:popover-open{
+    background-color: #fff;
+    width: min(800px, 100dvw);
+    height: min(150px, 20dvh);
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    padding: 1em;
+    .icon{
+        width: var(--fontSize3);
+        height: var(--fontSize3);
+    }
+    .message{
+        flex-grow: 1;
+        padding: 2%;
+        font-size: var(--fontSize2);
+    }
+}
 
+#editPlayers:popover-open{
+    display: grid;
+    grid-template: max-content auto / auto min-content;
+    width: min(400px, 80dvw);
+    background-color: #9c9c9c;
+    margin: auto;
+    padding: 1rem;
+    border-radius: 20px;
+    overflow: visible;
+    form{
+        grid-area: 2/1/-1/-1;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        #player1Edit, #player2Edit{
+            display: flex;
+            flex-direction: column;
+            label{
+                font-size: var(--fontSize2);
+                margin-bottom: 5px;
+                width: 100%;
+                text-align: center;
+            }
+            div{
+                display: flex;
+                justify-content: space-evenly;
+                width: 80%;
+                align-self: center;
+                input{
+                    width: 60%;
+                    padding: 0 0.5rem;
+                }
+                select{
+                    padding: 0.2rem;
+                }
+                input, select{
+                    font-size: calc(var(--fontSize2) * 1.2);
+                    border-radius: 0.4rem;
+                }
+            }
+        }
+        .submit{
+            width: min-content;
+            height: min-content;
+            padding: 0.5rem;
+            display: flex;
+            align-self: center;
+            justify-self: end;
+            border-radius: 0.5rem;
+            svg{
+                width: var(--iconSize1);
+                height: var(--iconSize1);
+            }
+        }
 
-
+        input.hidden{
+            display: none;
+        }
+    }
+}
 
 @keyframes wiggle {
+    0%{
+        rotate: 0deg;
+    }
+    19%{ 
+        rotate: 0deg;
+    }
+    20%{
+        rotate: 1deg;
+    }
+    30%{
+        rotate: 0deg;
+    }
+    35%{
+        rotate: 1deg;
+    }
+    36%{
+        rotate: 0deg;
+    }
+    100%{
+        rotate: 0deg;
+    }
+}
+
+@keyframes markPlace {
     from{
-        rotate: 5deg;
+        opacity: 0;
+        transform: rotate(-45deg) scale(0);
     }
     to{
-        rotate: -5deg;
+        opacity: 1;
+        transform: rotate(0) scale(1);
     }
 }
