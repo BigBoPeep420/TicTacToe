@@ -1,193 +1,201 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TicTacToe</title>
-    
+
     <script src="./scripts/index.js" defer></script>
-    <link rel="stylesheet" href="./styles/index.css">
+    <link rel="stylesheet" href="./styles/index.css" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Knewave&display=swap" rel="stylesheet">
-
-</head>
-<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Knewave&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <section id="header">
-        <div class="title">
-            <h1 class="tic">
-                Tic
-            </h1>
-            <h1 class="tac">
-                Tac
-            </h1>
-            <h1 class="toe">
-                Toe
-            </h1>
-        </div>
-        <div class="titleBG"></div>
+      <div class="title">
+        <h1 class="tic">Tic</h1>
+        <h1 class="tac">Tac</h1>
+        <h1 class="toe">Toe</h1>
+      </div>
+      <div class="titleBG"></div>
     </section>
 
     <section id="content">
-        <div id="gameInfo">
-            <div id="player1Info">
-                <p>Player 1</p>
-                <p>Name: <span id="player1Name"></span></p>
-                <p>Mark: <span id="player1Mark"></span></p>
-                <p>Won: <span id="player1Won">0</span></p>
-            </div>
-
-            <div>
-                <p>Games Played</p>
-                <p id="gamesPlayed">0</p>
-            </div>
-            
-            <div id="player2Info">
-                <p>Player 2</p>
-                <p>Name: <span id="player2Name"></span></p>
-                <p>Mark: <span id="player2Mark"></span></p>
-                <p>Won: <span id="player2Won">0</span></p>
-            </div>
-
-            <div id="playerHighlight">
-                
-            </div>
+      <div id="gameInfo">
+        <div id="player1Info">
+          <p>Player 1</p>
+          <p>Name: <span id="player1Name"></span></p>
+          <p>Mark: <span id="player1Mark"></span></p>
+          <p>Won: <span id="player1Won">0</span></p>
         </div>
 
-        <div id="gameBoard">
-            <div class="row">
-                <div class="cell" data-row="1" data-col="1">
-                    <svg><use></use></svg>
-                </div>
-                <div class="cell" data-row="1" data-col="2">
-                    <svg><use></use></svg>
-                </div>
-                <div class="cell" data-row="1" data-col="3">
-                    <svg><use></use></svg>
-                </div>
-            </div>
-            <div class="row">
-                <div class="cell" data-row="2" data-col="1">
-                    <svg><use></use></svg>
-                </div>
-                <div class="cell" data-row="2" data-col="2">
-                    <svg><use></use></svg>
-                </div>
-                <div class="cell" data-row="2" data-col="3">
-                    <svg><use></use></svg>
-                </div>
-            </div>
-            <div class="row">
-                <div class="cell" data-row="3" data-col="1">
-                    <svg><use></use></svg>
-                </div>
-                <div class="cell" data-row="3" data-col="2">
-                    <svg><use></use></svg>
-                </div>
-                <div class="cell" data-row="3" data-col="3">
-                    <svg><use></use></svg>
-                </div>
-            </div>
+        <div>
+          <p>Games Played</p>
+          <p id="gamesPlayed">0</p>
         </div>
 
-        <div id="gameButtons">
-            <button type="button" id="editPlayersBtn">
-                <svg><use href="/styles/icons.svg?v#iconPlayers"></use></svg>
-                <p>Edit Players</p>
-            </button>
-
-            <button type="button" id="help">
-                <svg><use href="/styles/icons.svg?v=1#iconHelp"></use></svg>
-            </button>
-
-            <button type="button" id="startGameBtn">
-                <svg><use href="/styles/icons.svg?v=1#iconPlay"></use></svg>
-            </button>
+        <div id="player2Info">
+          <p>Player 2</p>
+          <p>Name: <span id="player2Name"></span></p>
+          <p>Mark: <span id="player2Mark"></span></p>
+          <p>Won: <span id="player2Won">0</span></p>
         </div>
-    </section>
 
-    <section id="footer">
+        <div id="playerHighlight"></div>
+      </div>
 
-    </section>
+      <div id="gameBoard">
+        <div class="row">
+          <div class="cell" data-row="1" data-col="1">
+            <svg><use></use></svg>
+          </div>
+          <div class="cell" data-row="1" data-col="2">
+            <svg><use></use></svg>
+          </div>
+          <div class="cell" data-row="1" data-col="3">
+            <svg><use></use></svg>
+          </div>
+        </div>
+        <div class="row">
+          <div class="cell" data-row="2" data-col="1">
+            <svg><use></use></svg>
+          </div>
+          <div class="cell" data-row="2" data-col="2">
+            <svg><use></use></svg>
+          </div>
+          <div class="cell" data-row="2" data-col="3">
+            <svg><use></use></svg>
+          </div>
+        </div>
+        <div class="row">
+          <div class="cell" data-row="3" data-col="1">
+            <svg><use></use></svg>
+          </div>
+          <div class="cell" data-row="3" data-col="2">
+            <svg><use></use></svg>
+          </div>
+          <div class="cell" data-row="3" data-col="3">
+            <svg><use></use></svg>
+          </div>
+        </div>
+      </div>
 
-    <div id="editPlayers" popover="auto">
-        <p>Edit Players</p>
-
-        <button type="button" class="close">
-            <svg><use href="/styles/icons.svg?#iconClose"></use></svg>
+      <div id="gameButtons">
+        <button type="button" id="editPlayersBtn">
+          <svg><use href="./styles/icons.svg?v#iconPlayers"></use></svg>
+          <p>Edit Players</p>
         </button>
 
-        <form action="" method="dialog">
-            <div id="player1Edit">
-                <label for="player1ControlSel">Player 1</label>
-                <div>
-                    <select name="player1Control" id="player1ControlSel">
-                        <option value="human" selected>Human</option>
-                        <option value="npc">NPC</option>
-                    </select>
+        <button type="button" id="help">
+          <svg><use href="./styles/icons.svg?v=1#iconHelp"></use></svg>
+        </button>
 
-                    <input type="text" id="player1NameInput" placeholder="Name" value="Odin" minlength="3">
+        <button type="button" id="startGameBtn">
+          <svg><use href="./styles/icons.svg?v=1#iconPlay"></use></svg>
+        </button>
+      </div>
+    </section>
 
-                    <select name="player1Mark" id="player1MarkSel">
-                        <option value="x">X</option>
-                        <option value="o">O</option>
-                    </select>
+    <section id="footer"></section>
 
-                </div>
-            </div>
-            <div id="player2Edit">
-                <label for="player2ControlSel">Player 2</label>
-                <div>
-                    <select name="player2Control" id="player2ControlSel">
-                        <option value="human">Human</option>
-                        <option value="npc" selected>NPC</option>
-                    </select>
+    <div id="editPlayers" popover="auto">
+      <p>Edit Players</p>
 
-                    <input type="text" id="player2NameInput" placeholder="Name" minlength="3">
+      <button type="button" class="close">
+        <svg><use href="./styles/icons.svg?#iconClose"></use></svg>
+      </button>
 
-                    <select name="player2Mark" id="player2MarkSel">
-                        <option value="x">X</option>
-                        <option value="o">O</option>
-                    </select>
+      <form action="" method="dialog">
+        <div id="player1Edit">
+          <label for="player1ControlSel">Player 1</label>
+          <div>
+            <select name="player1Control" id="player1ControlSel">
+              <option value="human" selected>Human</option>
+              <option value="npc">NPC</option>
+            </select>
 
-                </div>
-            </div>
-            <button type="submit" class="submit">
-                <svg><use href="/styles/icons.svg?v#iconSubmitPlayerEdit"></use></svg>
-            </button>
-        </form>
+            <input
+              type="text"
+              id="player1NameInput"
+              placeholder="Name"
+              value="Odin"
+              minlength="3"
+            />
 
+            <select name="player1Mark" id="player1MarkSel">
+              <option value="x">X</option>
+              <option value="o">O</option>
+            </select>
+          </div>
+        </div>
+        <div id="player2Edit">
+          <label for="player2ControlSel">Player 2</label>
+          <div>
+            <select name="player2Control" id="player2ControlSel">
+              <option value="human">Human</option>
+              <option value="npc" selected>NPC</option>
+            </select>
+
+            <input
+              type="text"
+              id="player2NameInput"
+              placeholder="Name"
+              minlength="3"
+            />
+
+            <select name="player2Mark" id="player2MarkSel">
+              <option value="x">X</option>
+              <option value="o">O</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="submit">
+          <svg>
+            <use href="./styles/icons.svg?v#iconSubmitPlayerEdit"></use>
+          </svg>
+        </button>
+      </form>
     </div>
 
     <div id="notification" popover="manual">
-        <svg class="icon"><use href=""></use></svg>
+      <svg class="icon"><use href=""></use></svg>
 
-        <div class="message">
-            <p>Default Notification</p>
-        </div>
+      <div class="message">
+        <p>Default Notification</p>
+      </div>
 
-        <button type="button" class="close">
-            <svg><use href="./styles/icons.svg#iconClose"></use></svg>
-        </button>
+      <button type="button" class="close">
+        <svg><use href="./styles/icons.svg#iconClose"></use></svg>
+      </button>
     </div>
 
     <div id="helpDialog" popover="auto">
-        <p>Help</p>
-        <p>
-            Click Edit Players to... edit the players. You can set each player to either Human or NPC. You can even
-            set both players to NPC and watch the fun. If a player is set to Human you can change their name. Each
-            player's Mark can also be changed (changing one automatically changes the other). Once you're happy click
-            the confirm button to save the changes. Clicking confirm will reset the current win counts.
-        </p>
-        <p>
-           To start a game, click the Play button next to the Help button. When a game has been completed, you can
-           click the Play button again to start a new round. When a new round starts the first player is chosen at
-           random. 
-        </p>
-        <p>
-            Quick note about the NPCs: they're dumb. They just randomly pick from an empty space.
-        </p>
+      <button type="button" class="close">
+        <svg><use href="./styles/icons.svg?v=1#iconClose"></use></svg>
+      </button>
+      <p class="title">Help</p>
+      <p>
+        Click Edit Players to... edit the players. You can set each player to
+        either Human or NPC. You can even set both players to NPC and watch the
+        fun. If a player is set to Human you can change their name. Each
+        player's Mark can also be changed (changing one automatically changes
+        the other). Once you're happy click the confirm button to save the
+        changes. Clicking confirm will reset the current win counts.
+      </p>
+      <p>
+        To start a game, click the Play button next to the Help button. When a
+        game has been completed, you can click the Play button again to start a
+        new round. When a new round starts the first player is chosen at random.
+      </p>
+      <p>
+        Quick note about the NPCs: they're dumb. They just randomly pick from an
+        empty space.
+      </p>
     </div>
-</body>
+  </body>
 </html>
