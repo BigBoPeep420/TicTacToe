@@ -253,7 +253,7 @@ const gameInterface = (function () {
 
   function notify(icon = "iconWarn", message = []) {
     const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
-    use.setAttribute("href", `/styles/icons.svg#${icon}`);
+    use.setAttribute("href", `./styles/icons.svg#${icon}`);
     notification.querySelector(".icon use").replaceWith(use);
     const para = notification.querySelector(".message");
     para.replaceChildren();
@@ -333,7 +333,7 @@ const gameInterface = (function () {
     elements[`p${player}Won`].textContent = num + 1;
   }
   function placeMark(mark, row, col) {
-    const iconID = `/styles/icons.svg?v=1#${mark === "x" ? "iconCross" : "iconCircle"}`;
+    const iconID = `./styles/icons.svg?v=1#${mark === "x" ? "iconCross" : "iconCircle"}`;
     const newUse = document.createElementNS(
       "http://www.w3.org/2000/svg",
       "use",
