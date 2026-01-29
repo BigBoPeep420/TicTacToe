@@ -248,6 +248,7 @@ const gameInterface = (function () {
     gameInstance.players[2].setType(elements.p2Sel.value);
     gameInstance.players[2].setMark(elements.p2MarkSel.value);
     updatePlayersInfo();
+    elements.gamesPlayed.textContent = 0;
     showEditPlayers(false);
   });
 
